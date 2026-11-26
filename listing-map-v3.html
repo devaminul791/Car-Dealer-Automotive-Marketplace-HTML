@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-auto data-accent="inherit">
+
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory map — Listing Map v3 — AVAVA Car</title>
+<meta name="description" content="A full-screen map of 98 verified cars: filter by condition, make, model, price, year and location, in cards or rows.">
+<meta name="theme-color" content="#f7f8fa">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;display=swap">
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/css/style4f8b.css?v=1791313710">
+<script src="assets/js/theme75ec.js?v=1791308395"></script>
+</head>
+<body>
+<svg class="defs" aria-hidden="true" focusable="false"><defs><pattern id="hatch-30" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatch hatch--30" x1="0" y1="0" x2="0" y2="12"/></pattern><pattern id="hatch-50" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatch hatch--50" x1="0" y1="0" x2="0" y2="12"/></pattern><pattern id="hatch-55" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatch hatch--55" x1="0" y1="0" x2="0" y2="12"/></pattern><pattern id="hatch-60" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatch hatch--60" x1="0" y1="0" x2="0" y2="12"/></pattern></defs><symbol id="avava-logo" viewBox="0 0 172 51"><path d="M0.91798 39.88C0.91798 39.1547 1.04265 38.435 1.29198 37.721C1.55265 36.9957 1.92665 36.3497 2.41398 35.783C2.90131 35.2163 3.50198 34.7573 4.21598 34.406C4.92998 34.0433 5.74031 33.862 6.64698 33.862C7.72365 33.862 8.64165 34.1057 9.40098 34.593C10.1716 35.0803 10.7383 35.715 11.101 36.497L10.166 37.075C9.97331 36.6783 9.73531 36.344 9.45198 36.072C9.17998 35.8 8.88531 35.579 8.56798 35.409C8.25065 35.239 7.92198 35.12 7.58198 35.052C7.24198 34.9727 6.90765 34.933 6.57898 34.933C5.85365 34.933 5.21331 35.0803 4.65798 35.375C4.10265 35.6697 3.63231 36.055 3.24698 36.531C2.87298 37.007 2.58965 37.5453 2.39698 38.146C2.20431 38.7353 2.10798 39.336 2.10798 39.948C2.10798 40.6167 2.22131 41.257 2.44798 41.869C2.68598 42.481 3.00331 43.025 3.39998 43.501C3.80798 43.9657 4.28398 44.3397 4.82798 44.623C5.38331 44.895 5.98398 45.031 6.62998 45.031C6.96998 45.031 7.31565 44.9913 7.66698 44.912C8.02965 44.8213 8.37531 44.6853 8.70398 44.504C9.04398 44.3113 9.35565 44.079 9.63898 43.807C9.92231 43.5237 10.1603 43.1837 10.353 42.787L11.339 43.297C11.1463 43.7503 10.8743 44.1527 10.523 44.504C10.1716 44.844 9.78065 45.133 9.34998 45.371C8.91931 45.609 8.46031 45.7903 7.97298 45.915C7.49698 46.0397 7.02665 46.102 6.56198 46.102C5.73465 46.102 4.97531 45.9207 4.28398 45.558C3.59265 45.1953 2.99765 44.725 2.49898 44.147C2.00031 43.5577 1.60931 42.8947 1.32598 42.158C1.05398 41.41 0.91798 40.6507 0.91798 39.88ZM17.4553 33.93H18.4583L23.4733 46H22.2153L20.6513 42.226H15.2283L13.6813 46H12.4063L17.4553 33.93ZM20.3793 41.291L17.9483 35.324L15.4833 41.291H20.3793ZM25.7135 46V33.93H30.8135C31.3349 33.93 31.8109 34.0433 32.2415 34.27C32.6835 34.4853 33.0632 34.7743 33.3805 35.137C33.6979 35.4883 33.9415 35.8907 34.1115 36.344C34.2929 36.7973 34.3835 37.2563 34.3835 37.721C34.3835 38.163 34.3155 38.588 34.1795 38.996C34.0549 39.3927 33.8735 39.7553 33.6355 40.084C33.4089 40.4013 33.1312 40.6733 32.8025 40.9C32.4739 41.1153 32.1055 41.2627 31.6975 41.342L34.6555 46H33.3125L30.4735 41.546H26.9035V46H25.7135ZM26.9035 40.492H30.8475C31.1989 40.492 31.5162 40.4183 31.7995 40.271C32.0942 40.1123 32.3435 39.9027 32.5475 39.642C32.7515 39.3813 32.9102 39.0867 33.0235 38.758C33.1369 38.4293 33.1935 38.0837 33.1935 37.721C33.1935 37.3583 33.1255 37.0127 32.9895 36.684C32.8649 36.344 32.6892 36.0493 32.4625 35.8C32.2472 35.5507 31.9865 35.3523 31.6805 35.205C31.3859 35.0577 31.0742 34.984 30.7455 34.984H26.9035V40.492ZM52.866 46V36.089L48.463 43.756H47.766L43.363 36.089V46H42.173V33.93H43.397L48.106 42.192L52.849 33.93H54.056V46H52.866ZM61.3312 33.93H62.3342L67.3492 46H66.0912L64.5272 42.226H59.1042L57.5572 46H56.2822L61.3312 33.93ZM64.2552 41.291L61.8242 35.324L59.3592 41.291H64.2552ZM69.5895 46V33.93H74.6895C75.2108 33.93 75.6868 34.0433 76.1175 34.27C76.5595 34.4853 76.9391 34.7743 77.2565 35.137C77.5738 35.4883 77.8175 35.8907 77.9875 36.344C78.1688 36.7973 78.2595 37.2563 78.2595 37.721C78.2595 38.163 78.1915 38.588 78.0555 38.996C77.9308 39.3927 77.7495 39.7553 77.5115 40.084C77.2848 40.4013 77.0071 40.6733 76.6785 40.9C76.3498 41.1153 75.9815 41.2627 75.5735 41.342L78.5315 46H77.1885L74.3495 41.546H70.7795V46H69.5895ZM70.7795 40.492H74.7235C75.0748 40.492 75.3921 40.4183 75.6755 40.271C75.9701 40.1123 76.2195 39.9027 76.4235 39.642C76.6275 39.3813 76.7861 39.0867 76.8995 38.758C77.0128 38.4293 77.0695 38.0837 77.0695 37.721C77.0695 37.3583 77.0015 37.0127 76.8655 36.684C76.7408 36.344 76.5651 36.0493 76.3385 35.8C76.1231 35.5507 75.8625 35.3523 75.5565 35.205C75.2618 35.0577 74.9501 34.984 74.6215 34.984H70.7795V40.492ZM81.2059 46V33.947H82.3959V40.951L89.0429 33.93H90.3519L85.4219 39.234L90.6069 46H89.2979L84.6739 39.931L82.3959 42.294V46H81.2059ZM100.749 44.946V46H92.6398V33.93H100.596V34.984H93.8298V39.336H99.7288V40.339H93.8298V44.946H100.749ZM112.077 34.984H107.776V46H106.586V34.984H102.285V33.93H112.077V34.984ZM114.395 46V33.93H119.393C119.914 33.93 120.39 34.0433 120.821 34.27C121.263 34.4853 121.643 34.7743 121.96 35.137C122.277 35.4883 122.527 35.8907 122.708 36.344C122.889 36.7973 122.98 37.2563 122.98 37.721C122.98 38.2197 122.895 38.7013 122.725 39.166C122.555 39.6193 122.317 40.0217 122.011 40.373C121.705 40.7243 121.337 41.0077 120.906 41.223C120.487 41.4383 120.016 41.546 119.495 41.546H115.585V46H114.395ZM115.585 40.492H119.444C119.795 40.492 120.113 40.4183 120.396 40.271C120.691 40.1123 120.94 39.9083 121.144 39.659C121.348 39.3983 121.507 39.1037 121.62 38.775C121.733 38.435 121.79 38.0837 121.79 37.721C121.79 37.347 121.722 36.9957 121.586 36.667C121.461 36.327 121.286 36.0323 121.059 35.783C120.844 35.5337 120.583 35.341 120.277 35.205C119.982 35.0577 119.671 34.984 119.342 34.984H115.585V40.492ZM125.48 46V33.93H126.67V44.946H133.64V46H125.48ZM139.641 33.93H140.644L145.659 46H144.401L142.837 42.226H137.414L135.867 46H134.592L139.641 33.93ZM142.565 41.291L140.134 35.324L137.669 41.291H142.565ZM146.652 39.88C146.652 39.1547 146.777 38.435 147.026 37.721C147.287 36.9957 147.661 36.3497 148.148 35.783C148.636 35.2163 149.236 34.7573 149.95 34.406C150.664 34.0433 151.475 33.862 152.381 33.862C153.458 33.862 154.376 34.1057 155.135 34.593C155.906 35.0803 156.473 35.715 156.835 36.497L155.9 37.075C155.708 36.6783 155.47 36.344 155.186 36.072C154.914 35.8 154.62 35.579 154.302 35.409C153.985 35.239 153.656 35.12 153.316 35.052C152.976 34.9727 152.642 34.933 152.313 34.933C151.588 34.933 150.948 35.0803 150.392 35.375C149.837 35.6697 149.367 36.055 148.981 36.531C148.607 37.007 148.324 37.5453 148.131 38.146C147.939 38.7353 147.842 39.336 147.842 39.948C147.842 40.6167 147.956 41.257 148.182 41.869C148.42 42.481 148.738 43.025 149.134 43.501C149.542 43.9657 150.018 44.3397 150.562 44.623C151.118 44.895 151.718 45.031 152.364 45.031C152.704 45.031 153.05 44.9913 153.401 44.912C153.764 44.8213 154.11 44.6853 154.438 44.504C154.778 44.3113 155.09 44.079 155.373 43.807C155.657 43.5237 155.895 43.1837 156.087 42.787L157.073 43.297C156.881 43.7503 156.609 44.1527 156.257 44.504C155.906 44.844 155.515 45.133 155.084 45.371C154.654 45.609 154.195 45.7903 153.707 45.915C153.231 46.0397 152.761 46.102 152.296 46.102C151.469 46.102 150.71 45.9207 150.018 45.558C149.327 45.1953 148.732 44.725 148.233 44.147C147.735 43.5577 147.344 42.8947 147.06 42.158C146.788 41.41 146.652 40.6507 146.652 39.88ZM167.725 44.946V46H159.616V33.93H167.572V34.984H160.806V39.336H166.705V40.339H160.806V44.946H167.725Z" fill="currentColor" stroke="none"/><path d="M-2.05096e-05 26L14.858 2.2H27.336L42.16 26H30.838L28.798 22.294H13.464L11.322 26H-2.05096e-05ZM17.986 14.406L16.83 16.446H25.568L24.446 14.406L21.624 8.626H20.944L17.986 14.406ZM46.8084 26L31.9844 2.2H43.7824L52.8944 18.316L62.3464 2.2H74.1444L59.2864 26H46.8084ZM63.9704 26L78.8284 2.2H91.3064L106.13 26H94.8084L92.7684 22.294H77.4344L75.2924 26H63.9704ZM81.9564 14.406L80.8004 16.446H89.5384L88.4164 14.406L85.5944 8.626H84.9144L81.9564 14.406ZM110.779 26L95.9549 2.2H107.753L116.865 18.316L126.317 2.2H138.115L123.257 26H110.779ZM127.941 26L142.799 2.2H155.277L170.101 26H158.779L156.739 22.294H141.405L139.263 26H127.941ZM145.927 14.406L144.771 16.446H153.509L152.387 14.406L149.565 8.626H148.885L145.927 14.406Z" fill="none" stroke-width="1.2" stroke-linejoin="round"/></symbol></svg>
+<div class="pre js-pre" aria-hidden="true"><svg class="pre__logo" viewBox="0 0 172 51" focusable="false"><defs><path id="pre-word" d="M-2.05096e-05 26L14.858 2.2H27.336L42.16 26H30.838L28.798 22.294H13.464L11.322 26H-2.05096e-05ZM17.986 14.406L16.83 16.446H25.568L24.446 14.406L21.624 8.626H20.944L17.986 14.406ZM46.8084 26L31.9844 2.2H43.7824L52.8944 18.316L62.3464 2.2H74.1444L59.2864 26H46.8084ZM63.9704 26L78.8284 2.2H91.3064L106.13 26H94.8084L92.7684 22.294H77.4344L75.2924 26H63.9704ZM81.9564 14.406L80.8004 16.446H89.5384L88.4164 14.406L85.5944 8.626H84.9144L81.9564 14.406ZM110.779 26L95.9549 2.2H107.753L116.865 18.316L126.317 2.2H138.115L123.257 26H110.779ZM127.941 26L142.799 2.2H155.277L170.101 26H158.779L156.739 22.294H141.405L139.263 26H127.941ZM145.927 14.406L144.771 16.446H153.509L152.387 14.406L149.565 8.626H148.885L145.927 14.406Z" pathLength="1"/><clipPath id="pre-clip"><use href="#pre-word"/></clipPath></defs><g clip-path="url(#pre-clip)"><rect class="pre__fill" x="-2" y="0" width="176" height="28"/></g><use class="pre__line" href="#pre-word"/><path class="pre__sub" d="M0.91798 39.88C0.91798 39.1547 1.04265 38.435 1.29198 37.721C1.55265 36.9957 1.92665 36.3497 2.41398 35.783C2.90131 35.2163 3.50198 34.7573 4.21598 34.406C4.92998 34.0433 5.74031 33.862 6.64698 33.862C7.72365 33.862 8.64165 34.1057 9.40098 34.593C10.1716 35.0803 10.7383 35.715 11.101 36.497L10.166 37.075C9.97331 36.6783 9.73531 36.344 9.45198 36.072C9.17998 35.8 8.88531 35.579 8.56798 35.409C8.25065 35.239 7.92198 35.12 7.58198 35.052C7.24198 34.9727 6.90765 34.933 6.57898 34.933C5.85365 34.933 5.21331 35.0803 4.65798 35.375C4.10265 35.6697 3.63231 36.055 3.24698 36.531C2.87298 37.007 2.58965 37.5453 2.39698 38.146C2.20431 38.7353 2.10798 39.336 2.10798 39.948C2.10798 40.6167 2.22131 41.257 2.44798 41.869C2.68598 42.481 3.00331 43.025 3.39998 43.501C3.80798 43.9657 4.28398 44.3397 4.82798 44.623C5.38331 44.895 5.98398 45.031 6.62998 45.031C6.96998 45.031 7.31565 44.9913 7.66698 44.912C8.02965 44.8213 8.37531 44.6853 8.70398 44.504C9.04398 44.3113 9.35565 44.079 9.63898 43.807C9.92231 43.5237 10.1603 43.1837 10.353 42.787L11.339 43.297C11.1463 43.7503 10.8743 44.1527 10.523 44.504C10.1716 44.844 9.78065 45.133 9.34998 45.371C8.91931 45.609 8.46031 45.7903 7.97298 45.915C7.49698 46.0397 7.02665 46.102 6.56198 46.102C5.73465 46.102 4.97531 45.9207 4.28398 45.558C3.59265 45.1953 2.99765 44.725 2.49898 44.147C2.00031 43.5577 1.60931 42.8947 1.32598 42.158C1.05398 41.41 0.91798 40.6507 0.91798 39.88ZM17.4553 33.93H18.4583L23.4733 46H22.2153L20.6513 42.226H15.2283L13.6813 46H12.4063L17.4553 33.93ZM20.3793 41.291L17.9483 35.324L15.4833 41.291H20.3793ZM25.7135 46V33.93H30.8135C31.3349 33.93 31.8109 34.0433 32.2415 34.27C32.6835 34.4853 33.0632 34.7743 33.3805 35.137C33.6979 35.4883 33.9415 35.8907 34.1115 36.344C34.2929 36.7973 34.3835 37.2563 34.3835 37.721C34.3835 38.163 34.3155 38.588 34.1795 38.996C34.0549 39.3927 33.8735 39.7553 33.6355 40.084C33.4089 40.4013 33.1312 40.6733 32.8025 40.9C32.4739 41.1153 32.1055 41.2627 31.6975 41.342L34.6555 46H33.3125L30.4735 41.546H26.9035V46H25.7135ZM26.9035 40.492H30.8475C31.1989 40.492 31.5162 40.4183 31.7995 40.271C32.0942 40.1123 32.3435 39.9027 32.5475 39.642C32.7515 39.3813 32.9102 39.0867 33.0235 38.758C33.1369 38.4293 33.1935 38.0837 33.1935 37.721C33.1935 37.3583 33.1255 37.0127 32.9895 36.684C32.8649 36.344 32.6892 36.0493 32.4625 35.8C32.2472 35.5507 31.9865 35.3523 31.6805 35.205C31.3859 35.0577 31.0742 34.984 30.7455 34.984H26.9035V40.492ZM52.866 46V36.089L48.463 43.756H47.766L43.363 36.089V46H42.173V33.93H43.397L48.106 42.192L52.849 33.93H54.056V46H52.866ZM61.3312 33.93H62.3342L67.3492 46H66.0912L64.5272 42.226H59.1042L57.5572 46H56.2822L61.3312 33.93ZM64.2552 41.291L61.8242 35.324L59.3592 41.291H64.2552ZM69.5895 46V33.93H74.6895C75.2108 33.93 75.6868 34.0433 76.1175 34.27C76.5595 34.4853 76.9391 34.7743 77.2565 35.137C77.5738 35.4883 77.8175 35.8907 77.9875 36.344C78.1688 36.7973 78.2595 37.2563 78.2595 37.721C78.2595 38.163 78.1915 38.588 78.0555 38.996C77.9308 39.3927 77.7495 39.7553 77.5115 40.084C77.2848 40.4013 77.0071 40.6733 76.6785 40.9C76.3498 41.1153 75.9815 41.2627 75.5735 41.342L78.5315 46H77.1885L74.3495 41.546H70.7795V46H69.5895ZM70.7795 40.492H74.7235C75.0748 40.492 75.3921 40.4183 75.6755 40.271C75.9701 40.1123 76.2195 39.9027 76.4235 39.642C76.6275 39.3813 76.7861 39.0867 76.8995 38.758C77.0128 38.4293 77.0695 38.0837 77.0695 37.721C77.0695 37.3583 77.0015 37.0127 76.8655 36.684C76.7408 36.344 76.5651 36.0493 76.3385 35.8C76.1231 35.5507 75.8625 35.3523 75.5565 35.205C75.2618 35.0577 74.9501 34.984 74.6215 34.984H70.7795V40.492ZM81.2059 46V33.947H82.3959V40.951L89.0429 33.93H90.3519L85.4219 39.234L90.6069 46H89.2979L84.6739 39.931L82.3959 42.294V46H81.2059ZM100.749 44.946V46H92.6398V33.93H100.596V34.984H93.8298V39.336H99.7288V40.339H93.8298V44.946H100.749ZM112.077 34.984H107.776V46H106.586V34.984H102.285V33.93H112.077V34.984ZM114.395 46V33.93H119.393C119.914 33.93 120.39 34.0433 120.821 34.27C121.263 34.4853 121.643 34.7743 121.96 35.137C122.277 35.4883 122.527 35.8907 122.708 36.344C122.889 36.7973 122.98 37.2563 122.98 37.721C122.98 38.2197 122.895 38.7013 122.725 39.166C122.555 39.6193 122.317 40.0217 122.011 40.373C121.705 40.7243 121.337 41.0077 120.906 41.223C120.487 41.4383 120.016 41.546 119.495 41.546H115.585V46H114.395ZM115.585 40.492H119.444C119.795 40.492 120.113 40.4183 120.396 40.271C120.691 40.1123 120.94 39.9083 121.144 39.659C121.348 39.3983 121.507 39.1037 121.62 38.775C121.733 38.435 121.79 38.0837 121.79 37.721C121.79 37.347 121.722 36.9957 121.586 36.667C121.461 36.327 121.286 36.0323 121.059 35.783C120.844 35.5337 120.583 35.341 120.277 35.205C119.982 35.0577 119.671 34.984 119.342 34.984H115.585V40.492ZM125.48 46V33.93H126.67V44.946H133.64V46H125.48ZM139.641 33.93H140.644L145.659 46H144.401L142.837 42.226H137.414L135.867 46H134.592L139.641 33.93ZM142.565 41.291L140.134 35.324L137.669 41.291H142.565ZM146.652 39.88C146.652 39.1547 146.777 38.435 147.026 37.721C147.287 36.9957 147.661 36.3497 148.148 35.783C148.636 35.2163 149.236 34.7573 149.95 34.406C150.664 34.0433 151.475 33.862 152.381 33.862C153.458 33.862 154.376 34.1057 155.135 34.593C155.906 35.0803 156.473 35.715 156.835 36.497L155.9 37.075C155.708 36.6783 155.47 36.344 155.186 36.072C154.914 35.8 154.62 35.579 154.302 35.409C153.985 35.239 153.656 35.12 153.316 35.052C152.976 34.9727 152.642 34.933 152.313 34.933C151.588 34.933 150.948 35.0803 150.392 35.375C149.837 35.6697 149.367 36.055 148.981 36.531C148.607 37.007 148.324 37.5453 148.131 38.146C147.939 38.7353 147.842 39.336 147.842 39.948C147.842 40.6167 147.956 41.257 148.182 41.869C148.42 42.481 148.738 43.025 149.134 43.501C149.542 43.9657 150.018 44.3397 150.562 44.623C151.118 44.895 151.718 45.031 152.364 45.031C152.704 45.031 153.05 44.9913 153.401 44.912C153.764 44.8213 154.11 44.6853 154.438 44.504C154.778 44.3113 155.09 44.079 155.373 43.807C155.657 43.5237 155.895 43.1837 156.087 42.787L157.073 43.297C156.881 43.7503 156.609 44.1527 156.257 44.504C155.906 44.844 155.515 45.133 155.084 45.371C154.654 45.609 154.195 45.7903 153.707 45.915C153.231 46.0397 152.761 46.102 152.296 46.102C151.469 46.102 150.71 45.9207 150.018 45.558C149.327 45.1953 148.732 44.725 148.233 44.147C147.735 43.5577 147.344 42.8947 147.06 42.158C146.788 41.41 146.652 40.6507 146.652 39.88ZM167.725 44.946V46H159.616V33.93H167.572V34.984H160.806V39.336H166.705V40.339H160.806V44.946H167.725Z"/></svg><span class="pre__bar"><span class="pre__run"></span></span></div>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main" class="lmapp">
+<h1 class="sr-only">Inventory map — 98 verified cars</h1>
+<section class="lcb-sec lcb-sec--app" aria-label="Search the inventory">
+  <div class="lcb lcb--app wrap js-cb">
+    <a class="lcb__logo js-home" href="index.html" aria-label="Avava — home"><svg class="logo logo--sym lcb__lg" viewBox="0 0 172 51" role="img" aria-label="Avava Car Marketplace"><use href="#avava-logo"/></svg></a>
+    <span class="lcb__div" aria-hidden="true"></span>
+    <div class="lcb__conds" role="group" aria-label="Condition"><button class="lcb__cond js-cb-cond is-on" type="button" data-i="0" aria-pressed="true">All</button><button class="lcb__cond js-cb-cond" type="button" data-i="1" aria-pressed="false">New</button><button class="lcb__cond js-cb-cond" type="button" data-i="2" aria-pressed="false">Used</button></div>
+    <span class="lcb__div lcb__div--2" aria-hidden="true"></span>
+    <button class="lcb__filters js-cb-sheet" type="button" aria-expanded="false" aria-controls="cb-dds"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters<span class="lcb__fn js-cb-fn" hidden>0</span></button>
+    <div class="lcb__dds" id="cb-dds"><div class="lcb__dd js-cb-dd" data-key="make">
+        <button class="lcb__btn js-cb-btn" type="button" aria-expanded="false" aria-controls="cb-make">
+          <span class="lcb__l">Make</span><span class="lcb__v js-cb-val">Any</span><span class="lcb__mark" aria-hidden="true"><svg class="ico i12 lcb__chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4"/></svg><span class="lcb__x">×</span></span></button>
+        <div class="lcb__pop js-cb-pop" id="cb-make" hidden>
+          <p class="lsc__ph"><span>Make</span><span>share of 98 cars</span></p>
+          <ul class="lcb__list"><li><button class="lsc__opt js-cb-opt is-on" type="button" data-i="0" aria-pressed="true"><span class="lsc__ot"><span class="lsc__rad"></span>Any</span><span class="lsc__ob"><span class="lsc__obf" data-w="100"></span></span><span class="lsc__on js-cb-n">98</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="1" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Porsche</span><span class="lsc__ob"><span class="lsc__obf" data-w="14"></span></span><span class="lsc__on js-cb-n">14</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="2" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Serpent</span><span class="lsc__ob"><span class="lsc__obf" data-w="5"></span></span><span class="lsc__on js-cb-n">5</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="3" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Lucid</span><span class="lsc__ob"><span class="lsc__obf" data-w="5"></span></span><span class="lsc__on js-cb-n">5</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="4" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Ferrari</span><span class="lsc__ob"><span class="lsc__obf" data-w="6"></span></span><span class="lsc__on js-cb-n">6</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="5" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Mercedes-AMG</span><span class="lsc__ob"><span class="lsc__obf" data-w="8"></span></span><span class="lsc__on js-cb-n">8</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="6" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Aston Martin</span><span class="lsc__ob"><span class="lsc__obf" data-w="4"></span></span><span class="lsc__on js-cb-n">4</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="7" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Jaguar</span><span class="lsc__ob"><span class="lsc__obf" data-w="4"></span></span><span class="lsc__on js-cb-n">4</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="8" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Lamborghini</span><span class="lsc__ob"><span class="lsc__obf" data-w="3"></span></span><span class="lsc__on js-cb-n">3</span></button></li></ul></div>
+      </div><div class="lcb__dd js-cb-dd" data-key="model">
+        <button class="lcb__btn js-cb-btn" type="button" aria-expanded="false" aria-controls="cb-model">
+          <span class="lcb__l">Model</span><span class="lcb__v js-cb-val">Any</span><span class="lcb__mark" aria-hidden="true"><svg class="ico i12 lcb__chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4"/></svg><span class="lcb__x">×</span></span></button>
+        <div class="lcb__pop js-cb-pop" id="cb-model" hidden>
+          <p class="lsc__ph"><span>Model</span><span>share of 98 cars</span></p>
+          <ul class="lcb__list"><li><button class="lsc__opt js-cb-opt is-on" type="button" data-i="0" aria-pressed="true"><span class="lsc__ot"><span class="lsc__rad"></span>Any</span><span class="lsc__ob"><span class="lsc__obf" data-w="100"></span></span><span class="lsc__on js-cb-n">98</span></button></li><li data-make="1"><button class="lsc__opt js-cb-opt" type="button" data-i="1" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Porsche </span>911 GT3</span><span class="lsc__ob"><span class="lsc__obf" data-w="6"></span></span><span class="lsc__on js-cb-n">6</span></button></li><li data-make="1"><button class="lsc__opt js-cb-opt" type="button" data-i="2" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Porsche </span>Taycan Turbo S</span><span class="lsc__ob"><span class="lsc__obf" data-w="4"></span></span><span class="lsc__on js-cb-n">4</span></button></li><li data-make="1"><button class="lsc__opt js-cb-opt" type="button" data-i="3" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Porsche </span>Cayenne</span><span class="lsc__ob"><span class="lsc__obf" data-w="4"></span></span><span class="lsc__on js-cb-n">4</span></button></li><li data-make="2"><button class="lsc__opt js-cb-opt" type="button" data-i="4" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Serpent </span>Roadster 427</span><span class="lsc__ob"><span class="lsc__obf" data-w="3"></span></span><span class="lsc__on js-cb-n">3</span></button></li><li data-make="2"><button class="lsc__opt js-cb-opt" type="button" data-i="5" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Serpent </span>Roadster 289</span><span class="lsc__ob"><span class="lsc__obf" data-w="2"></span></span><span class="lsc__on js-cb-n">2</span></button></li><li data-make="3"><button class="lsc__opt js-cb-opt" type="button" data-i="6" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Lucid </span>Air Sapphire</span><span class="lsc__ob"><span class="lsc__obf" data-w="3"></span></span><span class="lsc__on js-cb-n">3</span></button></li><li data-make="3"><button class="lsc__opt js-cb-opt" type="button" data-i="7" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Lucid </span>Air Touring</span><span class="lsc__ob"><span class="lsc__obf" data-w="2"></span></span><span class="lsc__on js-cb-n">2</span></button></li><li data-make="4"><button class="lsc__opt js-cb-opt" type="button" data-i="8" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Ferrari </span>Dino 246 GT</span><span class="lsc__ob"><span class="lsc__obf" data-w="3"></span></span><span class="lsc__on js-cb-n">3</span></button></li><li data-make="4"><button class="lsc__opt js-cb-opt" type="button" data-i="9" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Ferrari </span>Roma</span><span class="lsc__ob"><span class="lsc__obf" data-w="3"></span></span><span class="lsc__on js-cb-n">3</span></button></li><li data-make="5"><button class="lsc__opt js-cb-opt" type="button" data-i="10" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Mercedes </span>G 63</span><span class="lsc__ob"><span class="lsc__obf" data-w="4"></span></span><span class="lsc__on js-cb-n">4</span></button></li><li data-make="5"><button class="lsc__opt js-cb-opt" type="button" data-i="11" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Mercedes </span>GTR</span><span class="lsc__ob"><span class="lsc__obf" data-w="2"></span></span><span class="lsc__on js-cb-n">2</span></button></li><li data-make="5"><button class="lsc__opt js-cb-opt" type="button" data-i="12" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Mercedes </span>C 63</span><span class="lsc__ob"><span class="lsc__obf" data-w="2"></span></span><span class="lsc__on js-cb-n">2</span></button></li><li data-make="6"><button class="lsc__opt js-cb-opt" type="button" data-i="13" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Aston Martin </span>DB11</span><span class="lsc__ob"><span class="lsc__obf" data-w="3"></span></span><span class="lsc__on js-cb-n">3</span></button></li><li data-make="6"><button class="lsc__opt js-cb-opt" type="button" data-i="14" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Aston Martin </span>Vantage</span><span class="lsc__ob"><span class="lsc__obf" data-w="1"></span></span><span class="lsc__on js-cb-n">1</span></button></li><li data-make="7"><button class="lsc__opt js-cb-opt" type="button" data-i="15" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Jaguar </span>E-Type</span><span class="lsc__ob"><span class="lsc__obf" data-w="3"></span></span><span class="lsc__on js-cb-n">3</span></button></li><li data-make="7"><button class="lsc__opt js-cb-opt" type="button" data-i="16" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Jaguar </span>F-Type</span><span class="lsc__ob"><span class="lsc__obf" data-w="1"></span></span><span class="lsc__on js-cb-n">1</span></button></li><li data-make="8"><button class="lsc__opt js-cb-opt" type="button" data-i="17" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Lamborghini </span>Huracán EVO</span><span class="lsc__ob"><span class="lsc__obf" data-w="2"></span></span><span class="lsc__on js-cb-n">2</span></button></li><li data-make="8"><button class="lsc__opt js-cb-opt" type="button" data-i="18" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span><span class="lcb__brand">Lamborghini </span>Urus</span><span class="lsc__ob"><span class="lsc__obf" data-w="1"></span></span><span class="lsc__on js-cb-n">1</span></button></li></ul></div>
+      </div><div class="lcb__dd js-cb-dd" data-key="price">
+        <button class="lcb__btn js-cb-btn" type="button" aria-expanded="false" aria-controls="cb-price">
+          <span class="lcb__l">Price</span><span class="lcb__v js-cb-val">Any</span><span class="lcb__mark" aria-hidden="true"><svg class="ico i12 lcb__chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4"/></svg><span class="lcb__x">×</span></span></button>
+        <div class="lcb__pop js-cb-pop" id="cb-price" hidden>
+          <p class="lsc__ph"><span>Price</span><span>share of 98 cars</span></p>
+          <ul class="lcb__list"><li><button class="lsc__opt js-cb-opt is-on" type="button" data-i="0" aria-pressed="true"><span class="lsc__ot"><span class="lsc__rad"></span>Any</span><span class="lsc__ob"><span class="lsc__obf" data-w="100"></span></span><span class="lsc__on js-cb-n">98</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="1" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Under $1,000/mo</span><span class="lsc__ob"><span class="lsc__obf" data-w="21"></span></span><span class="lsc__on js-cb-n">21</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="2" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Under $1,500/mo</span><span class="lsc__ob"><span class="lsc__obf" data-w="45"></span></span><span class="lsc__on js-cb-n">44</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="3" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Under $2,500/mo</span><span class="lsc__ob"><span class="lsc__obf" data-w="72"></span></span><span class="lsc__on js-cb-n">71</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="4" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>$2,500+/mo</span><span class="lsc__ob"><span class="lsc__obf" data-w="28"></span></span><span class="lsc__on js-cb-n">27</span></button></li></ul></div>
+      </div><div class="lcb__dd js-cb-dd" data-key="year">
+        <button class="lcb__btn js-cb-btn" type="button" aria-expanded="false" aria-controls="cb-year">
+          <span class="lcb__l">Year</span><span class="lcb__v js-cb-val">Any</span><span class="lcb__mark" aria-hidden="true"><svg class="ico i12 lcb__chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4"/></svg><span class="lcb__x">×</span></span></button>
+        <div class="lcb__pop js-cb-pop" id="cb-year" hidden>
+          <p class="lsc__ph"><span>Year</span><span>share of 98 cars</span></p>
+          <ul class="lcb__list"><li><button class="lsc__opt js-cb-opt is-on" type="button" data-i="0" aria-pressed="true"><span class="lsc__ot"><span class="lsc__rad"></span>Any</span><span class="lsc__ob"><span class="lsc__obf" data-w="100"></span></span><span class="lsc__on js-cb-n">98</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="1" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>2023+</span><span class="lsc__ob"><span class="lsc__obf" data-w="33"></span></span><span class="lsc__on js-cb-n">32</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="2" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>2018+</span><span class="lsc__ob"><span class="lsc__obf" data-w="59"></span></span><span class="lsc__on js-cb-n">58</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="3" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>2010+</span><span class="lsc__ob"><span class="lsc__obf" data-w="76"></span></span><span class="lsc__on js-cb-n">74</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="4" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Pre-1990</span><span class="lsc__ob"><span class="lsc__obf" data-w="14"></span></span><span class="lsc__on js-cb-n">14</span></button></li></ul></div>
+      </div><div class="lcb__dd js-cb-dd" data-key="loc">
+        <button class="lcb__btn js-cb-btn" type="button" aria-expanded="false" aria-controls="cb-loc">
+          <span class="lcb__l">Location</span><span class="lcb__v js-cb-val">Any</span><span class="lcb__mark" aria-hidden="true"><svg class="ico i12 lcb__chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4"/></svg><span class="lcb__x">×</span></span></button>
+        <div class="lcb__pop js-cb-pop" id="cb-loc" hidden>
+          <p class="lsc__ph"><span>Location</span><span>share of 98 cars</span></p>
+          <ul class="lcb__list"><li><button class="lsc__opt js-cb-opt is-on" type="button" data-i="0" aria-pressed="true"><span class="lsc__ot"><span class="lsc__rad"></span>Anywhere</span><span class="lsc__ob"><span class="lsc__obf" data-w="100"></span></span><span class="lsc__on js-cb-n">98</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="1" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Los Angeles</span><span class="lsc__ob"><span class="lsc__obf" data-w="62"></span></span><span class="lsc__on js-cb-n">61</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="2" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>San Diego</span><span class="lsc__ob"><span class="lsc__obf" data-w="14"></span></span><span class="lsc__on js-cb-n">14</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="3" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Orange County</span><span class="lsc__ob"><span class="lsc__obf" data-w="12"></span></span><span class="lsc__on js-cb-n">12</span></button></li><li><button class="lsc__opt js-cb-opt" type="button" data-i="4" aria-pressed="false"><span class="lsc__ot"><span class="lsc__rad"></span>Long Beach</span><span class="lsc__ob"><span class="lsc__obf" data-w="11"></span></span><span class="lsc__on js-cb-n">11</span></button></li></ul></div>
+      </div></div>
+    <div class="lcb__r">
+      <span class="lcb__sw" role="group" aria-label="Theme"><button class="lcb__ic js-theme-set" type="button" data-theme-set="light" aria-pressed="true" aria-label="Light theme"><svg class="ico i20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.1" y2="4.9"/></svg></button><button class="lcb__ic js-theme-set" type="button" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme"><svg class="ico i20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg></button></span>
+      <span class="lcb__sw" role="group" aria-label="Cards or rows">
+        <button class="lcb__ic js-ls-view is-on" type="button" data-view="0" aria-pressed="true" aria-label="Grid"><svg class="ico i18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true" focusable="false"><rect x="1.5" y="1.5" width="6" height="6" rx="1.5"/><rect x="10.5" y="1.5" width="6" height="6" rx="1.5"/><rect x="1.5" y="10.5" width="6" height="6" rx="1.5"/><rect x="10.5" y="10.5" width="6" height="6" rx="1.5"/></svg></button>
+        <button class="lcb__ic js-ls-view" type="button" data-view="1" aria-pressed="false" aria-label="List"><svg class="ico i18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M1.5 4h15M1.5 9h15M1.5 14h15"/></svg></button></span>
+      <span class="lcb__sw lcb__sw--map" role="group" aria-label="Layout">
+        <button class="lcb__tx js-lm-mode" type="button" data-mode="0" aria-pressed="false">Grid</button>
+        <button class="lcb__tx js-lm-mode is-on" type="button" data-mode="1" aria-pressed="true">Map</button></span>
+    </div>
+  </div>
+</section>
+<div class="lcb-gap"></div>
+<section class="lm is-map js-lm" id="results" aria-label="Results">
+  <h2 class="sr-only">Results</h2>
+  <div class="lm__body wrap">
+    <section class="lm__map js-lm-map" aria-label="Map of the cars">
+      <span class="lm__mock" aria-hidden="true"><span class="lm__water"></span><span class="lm__road lm__road--1"></span><span class="lm__road lm__road--2"></span><span class="lm__road lm__road--3"></span><span class="lm__road lm__road--4"></span></span>
+      <div class="lm__live js-lm-live"></div>
+      <span class="lm__zoom"><button class="lm__zb js-lm-zin" type="button" aria-label="Zoom in">+</button><button class="lm__zb js-lm-zout" type="button" aria-label="Zoom out">−</button></span>
+      <button class="lm__area js-lm-area" type="button" hidden>Search this area</button>
+      <p class="lm__count"><span class="lm__cd"></span><span class="js-lm-count">9</span> cars in this area</p>
+    </section>
+    <div class="lm__res js-lm-res">
+      <ul class="lres__grid lm__grid js-ln-grid"><li class="lcd js-ln-item" data-lat="34.0407" data-lng="-118.2663" data-mo="$1,490" data-car="0">
+      <div class="lcd__ph js-ln-gal" data-car="0">
+        <img class="lcd__img" src="assets/img/car-serpent-roadster-427.webp" alt="1965 Serpent Roadster 427" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ink">Classic</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="0" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="0" aria-pressed="true" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">01</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">12,400 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">4.2 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">485 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">Manual</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Serpent Roadster 427</span><span class="lcd__mo">$1,490<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">1965 · 12,400 mi · 0–100 4.2 s · Los Angeles</span><span class="lcd__price">$189,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal is-ok"><span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span></span>Great deal</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">7 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="34.0736" data-lng="-118.4004" data-mo="$2,180" data-car="1">
+      <div class="lcd__ph js-ln-gal" data-car="1">
+        <img class="lcd__img" src="assets/img/car-porsche-911-gt3.webp" alt="2024 Porsche 911 GT3" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--acc">New</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="1" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="1" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">02</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">1,200 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">3.2 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">502 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">PDK</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Porsche 911 GT3</span><span class="lcd__mo">$2,180<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">2024 · 1,200 mi · 0–100 3.2 s · Beverly Hills</span><span class="lcd__price">$241,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal"><span class="lx-meter" aria-hidden="true"><span class="is-acc"></span><span class="is-acc"></span><span class=""></span><span class=""></span><span class=""></span></span>Fair price</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">12 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="34.0195" data-lng="-118.4912" data-mo="$1,960" data-car="2">
+      <div class="lcd__ph js-ln-gal" data-car="2">
+        <img class="lcd__img" src="assets/img/car-lucid-air-sapphire.webp" alt="2023 Lucid Air Sapphire" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ok">Electric</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="2" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="2" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">03</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">3,900 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">1.9 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">1,234 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">Auto</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Lucid Air Sapphire</span><span class="lcd__mo">$1,960<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">2023 · 3,900 mi · 0–100 1.9 s · Santa Monica</span><span class="lcd__price">$249,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal is-ok"><span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span>Good deal</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">4 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="34.1478" data-lng="-118.1445" data-mo="$2,450" data-car="3">
+      <div class="lcd__ph js-ln-gal" data-car="3">
+        <img class="lcd__img" src="assets/img/car-ferrari-dino-246-gt.webp" alt="1972 Ferrari Dino 246 GT" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ink">Classic</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="3" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="3" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">04</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">38,100 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">6.8 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">195 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">Manual</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Ferrari Dino 246 GT</span><span class="lcd__mo">$2,450<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">1972 · 38,100 mi · 0–100 6.8 s · Pasadena</span><span class="lcd__price">$420,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal is-ok"><span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span>Good deal</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">9 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="34.0587" data-lng="-118.2363" data-mo="$2,690" data-car="4">
+      <div class="lcd__ph js-ln-gal" data-car="4">
+        <img class="lcd__img" src="assets/img/car-mercedes-amg-g63.webp" alt="2024 Mercedes-AMG G 63" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--acc">New</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="4" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="4" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">05</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">800 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">4.3 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">577 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">Auto</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Mercedes-AMG G 63</span><span class="lcd__mo">$2,690<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">2024 · 800 mi · 0–100 4.3 s · Los Angeles</span><span class="lcd__price">$236,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal"><span class="lx-meter" aria-hidden="true"><span class="is-acc"></span><span class="is-acc"></span><span class=""></span><span class=""></span><span class=""></span></span>Fair price</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">3 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="33.6846" data-lng="-117.8265" data-mo="$1,840" data-car="5">
+      <div class="lcd__ph js-ln-gal" data-car="5">
+        <img class="lcd__img" src="assets/img/car-porsche-taycan-turbo-s.webp" alt="2023 Porsche Taycan Turbo S" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ok">Electric</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="5" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="5" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">06</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">6,300 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">2.4 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">750 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">Auto</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Porsche Taycan Turbo S</span><span class="lcd__mo">$1,840<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">2023 · 6,300 mi · 0–100 2.4 s · Irvine</span><span class="lcd__price">$198,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal is-ok"><span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span></span>Great deal</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">5 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="34.0259" data-lng="-118.7798" data-mo="$1,720" data-car="6">
+      <div class="lcd__ph js-ln-gal" data-car="6">
+        <img class="lcd__img" src="assets/img/car-aston-martin-db11.webp" alt="2022 Aston Martin DB11" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--mute">Verified</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="6" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="6" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">07</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">9,800 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">3.7 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">630 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">Auto</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Aston Martin DB11</span><span class="lcd__mo">$1,720<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">2022 · 9,800 mi · 0–100 3.7 s · Malibu</span><span class="lcd__price">$176,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal is-ok"><span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span>Good deal</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">11 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="33.7701" data-lng="-118.1937" data-mo="$1,990" data-car="7">
+      <div class="lcd__ph js-ln-gal" data-car="7">
+        <img class="lcd__img" src="assets/img/car-jaguar-e-type-s1.webp" alt="1967 Jaguar E-Type S1" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ink">Classic</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="7" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="7" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">08</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">51,000 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">6.9 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">265 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">Manual</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Jaguar E-Type S1</span><span class="lcd__mo">$1,990<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">1967 · 51,000 mi · 0–100 6.9 s · Long Beach</span><span class="lcd__price">$265,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal"><span class="lx-meter" aria-hidden="true"><span class="is-acc"></span><span class="is-acc"></span><span class=""></span><span class=""></span><span class=""></span></span>Fair price</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">6 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li><li class="lcd js-ln-item" data-lat="33.6189" data-lng="-117.9298" data-mo="$1,890" data-car="8">
+      <div class="lcd__ph js-ln-gal" data-car="8">
+        <img class="lcd__img" src="assets/img/bodytype-sports-lamborghini.webp" alt="2022 Lamborghini Huracán EVO" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--mute">Verified</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified</span></p>
+        <p class="lcd__acts"><button class="lcd__cmp js-ln-cmp" type="button" data-car="8" aria-pressed="false">+ Compare</button><button class="lcd__fav lx-fav js-ln-fav" type="button" data-car="8" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <button class="lcd__nav lcd__nav--prev js-ln-prev" type="button" aria-label="Previous photo">←</button>
+        <button class="lcd__nav lcd__nav--next js-ln-next" type="button" aria-label="Next photo">→</button>
+        <span class="lcd__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lcd__n js-ln-n" aria-hidden="true">09</span>
+        <span class="lcd__specs"><span class="lcd__sp"><span class="lcd__sk">Mileage</span><span class="lcd__sv">5,400 mi</span></span><span class="lcd__sp"><span class="lcd__sk">0–100</span><span class="lcd__sv">2.9 s</span></span><span class="lcd__sp"><span class="lcd__sk">Power</span><span class="lcd__sv">631 hp</span></span><span class="lcd__sp"><span class="lcd__sk">Gearbox</span><span class="lcd__sv">DCT</span></span></span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <a class="lcd__head" href="listing-single-v1.html"><span class="lcd__name">Lamborghini Huracán EVO</span><span class="lcd__mo">$1,890<span class="lcd__per"> / mo</span></span>
+        <span class="lcd__meta">2022 · 5,400 mi · 0–100 2.9 s · Newport Beach</span><span class="lcd__price">$219,000</span></a>
+      <p class="lcd__foot"><span class="lx-deal is-ok"><span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span>Good deal</span><span class="lcd__mute">Delivery 24 h</span><span class="lcd__mute" aria-hidden="true">·</span><span class="lcd__mute">8 viewing now</span>
+        <a class="lcd__go" href="listing-single-v1.html">View car<span class="lcd__gdot">→</span></a></p>
+    </li></ul>
+      <ul class="lres__list lm__list js-ln-list" hidden><li class="lrw js-ln-item" data-lat="34.0407" data-lng="-118.2663" data-mo="$1,490" data-car="0">
+      <div class="lrw__ph js-ln-gal" data-car="0">
+        <img class="lrw__img" src="assets/img/car-serpent-roadster-427.webp" alt="1965 Serpent Roadster 427" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ink">Classic</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="0" aria-pressed="true" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">01</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-serpent-roadster-427.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-serpent-roadster-427.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-serpent-roadster-427.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>1965 · Roadster · Los Angeles</span><span class="lrw__live"><span class="lrw__ld"></span>7 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Serpent Roadster 427</a></h3>
+        <p class="lrw__line">Side-oiler 427 V8, matching numbers, full restoration 2019.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">12,400 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">4.2 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">485 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">Manual</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">4</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Matching numbers</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Restored 2019</li><li class="lrw__ft"><span class="lrw__ck">✓</span>History file</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal is-ok">Great deal · $6.8k under<span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span></span></span>
+        <p class="lrw__mo">$1,490<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$189,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="2">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="0" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="34.0407" data-lng="-118.2663" data-mo="$1,490" data-car="0">
+      <div class="lmr__ph js-ln-gal" data-car="0">
+        <img class="lmr__img" src="assets/img/car-serpent-roadster-427.webp" alt="1965 Serpent Roadster 427" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--ink">Classic</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="0" aria-pressed="true" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g133" aria-hidden="true">427</span>
+        <p class="lmr__meta">1965 · Roadster · Los Angeles</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Serpent Roadster 427</a></h3>
+        <p class="lmr__line">Side-oiler 427 V8, matching numbers, full restoration 2019.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">4.2 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">485 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">12,400 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$1,490<span class="lmr__per"> / mo</span></span><span class="lmr__full">$189,000 · Great deal</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="0" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Serpent Roadster 427">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="34.0736" data-lng="-118.4004" data-mo="$2,180" data-car="1">
+      <div class="lrw__ph js-ln-gal" data-car="1">
+        <img class="lrw__img" src="assets/img/car-porsche-911-gt3.webp" alt="2024 Porsche 911 GT3" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--acc">New</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="1" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">02</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-porsche-911-gt3.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-porsche-911-gt3.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-porsche-911-gt3.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>2024 · Coupé · Beverly Hills</span><span class="lrw__live"><span class="lrw__ld"></span>12 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Porsche 911 GT3</a></h3>
+        <p class="lrw__line">Naturally aspirated 4.0 flat-six, Clubsport pack, carbon buckets. One owner.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">1,200 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">3.2 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">502 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">PDK</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">1</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Clubsport pack</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Carbon brakes</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Front lift</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal">Fair price · at market<span class="lx-meter" aria-hidden="true"><span class="is-acc"></span><span class="is-acc"></span><span class=""></span><span class=""></span><span class=""></span></span></span>
+        <p class="lrw__mo">$2,180<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$241,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="3">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="1" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="34.0736" data-lng="-118.4004" data-mo="$2,180" data-car="1">
+      <div class="lmr__ph js-ln-gal" data-car="1">
+        <img class="lmr__img" src="assets/img/car-porsche-911-gt3.webp" alt="2024 Porsche 911 GT3" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--acc">New</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="1" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g133" aria-hidden="true">GT3</span>
+        <p class="lmr__meta">2024 · Coupé · Beverly Hills</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Porsche 911 GT3</a></h3>
+        <p class="lmr__line">Naturally aspirated 4.0 flat-six, Clubsport pack, carbon buckets. One owner.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">3.2 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">502 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">1,200 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$2,180<span class="lmr__per"> / mo</span></span><span class="lmr__full">$241,000 · Fair price</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="1" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Porsche 911 GT3">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="34.0195" data-lng="-118.4912" data-mo="$1,960" data-car="2">
+      <div class="lrw__ph js-ln-gal" data-car="2">
+        <img class="lrw__img" src="assets/img/car-lucid-air-sapphire.webp" alt="2023 Lucid Air Sapphire" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ok">Electric</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="2" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">03</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-lucid-air-sapphire.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-lucid-air-sapphire.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-lucid-air-sapphire.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>2023 · Sedan · Santa Monica</span><span class="lrw__live"><span class="lrw__ld"></span>4 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Lucid Air Sapphire</a></h3>
+        <p class="lrw__line">Triple-motor 1,234 hp, 684 km range, Stealth appearance.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">3,900 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">1.9 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">1,234 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">Auto</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">1</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Glass roof</li><li class="lrw__ft"><span class="lrw__ck">✓</span>DreamDrive</li><li class="lrw__ft"><span class="lrw__ck">✓</span>684 km</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal is-ok">Good deal · $3.1k under<span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span></span>
+        <p class="lrw__mo">$1,960<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$249,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="2">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="2" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="34.0195" data-lng="-118.4912" data-mo="$1,960" data-car="2">
+      <div class="lmr__ph js-ln-gal" data-car="2">
+        <img class="lmr__img" src="assets/img/car-lucid-air-sapphire.webp" alt="2023 Lucid Air Sapphire" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--ok">Electric</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="2" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g50" aria-hidden="true">SAPPHIRE</span>
+        <p class="lmr__meta">2023 · Sedan · Santa Monica</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Lucid Air Sapphire</a></h3>
+        <p class="lmr__line">Triple-motor 1,234 hp, 684 km range, Stealth appearance.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">1.9 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">1,234 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">3,900 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$1,960<span class="lmr__per"> / mo</span></span><span class="lmr__full">$249,000 · Good deal</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="2" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Lucid Air Sapphire">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="34.1478" data-lng="-118.1445" data-mo="$2,450" data-car="3">
+      <div class="lrw__ph js-ln-gal" data-car="3">
+        <img class="lrw__img" src="assets/img/car-ferrari-dino-246-gt.webp" alt="1972 Ferrari Dino 246 GT" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ink">Classic</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="3" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">04</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-ferrari-dino-246-gt.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-ferrari-dino-246-gt.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-ferrari-dino-246-gt.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>1972 · Coupé · Pasadena</span><span class="lrw__live"><span class="lrw__ld"></span>9 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Ferrari Dino 246 GT</a></h3>
+        <p class="lrw__line">Mid-engined V6 2.4, Rosso Chiaro, Ferrari Classiche certified.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">38,100 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">6.8 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">195 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">Manual</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">4</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Classiche red book</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Matching numbers</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Tool roll</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal is-ok">Good deal · $9.5k under<span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span></span>
+        <p class="lrw__mo">$2,450<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$420,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="3">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="3" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="34.1478" data-lng="-118.1445" data-mo="$2,450" data-car="3">
+      <div class="lmr__ph js-ln-gal" data-car="3">
+        <img class="lmr__img" src="assets/img/car-ferrari-dino-246-gt.webp" alt="1972 Ferrari Dino 246 GT" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--ink">Classic</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="3" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g170" aria-hidden="true">GT</span>
+        <p class="lmr__meta">1972 · Coupé · Pasadena</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Ferrari Dino 246 GT</a></h3>
+        <p class="lmr__line">Mid-engined V6 2.4, Rosso Chiaro, Ferrari Classiche certified.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">6.8 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">195 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">38,100 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$2,450<span class="lmr__per"> / mo</span></span><span class="lmr__full">$420,000 · Good deal</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="3" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Ferrari Dino 246 GT">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="34.0587" data-lng="-118.2363" data-mo="$2,690" data-car="4">
+      <div class="lrw__ph js-ln-gal" data-car="4">
+        <img class="lrw__img" src="assets/img/car-mercedes-amg-g63.webp" alt="2024 Mercedes-AMG G 63" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--acc">New</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="4" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">05</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-mercedes-amg-g63.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-mercedes-amg-g63.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-mercedes-amg-g63.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>2024 · SUV · Los Angeles</span><span class="lrw__live"><span class="lrw__ld"></span>3 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Mercedes-AMG G 63</a></h3>
+        <p class="lrw__line">Handcrafted V8 biturbo, three locking differentials, Manufaktur interior.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">800 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">4.3 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">577 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">Auto</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">1</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Manufaktur</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Burmester</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Night package</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal">Fair price · at market<span class="lx-meter" aria-hidden="true"><span class="is-acc"></span><span class="is-acc"></span><span class=""></span><span class=""></span><span class=""></span></span></span>
+        <p class="lrw__mo">$2,690<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$236,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="2">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="4" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="34.0587" data-lng="-118.2363" data-mo="$2,690" data-car="4">
+      <div class="lmr__ph js-ln-gal" data-car="4">
+        <img class="lmr__img" src="assets/img/car-mercedes-amg-g63.webp" alt="2024 Mercedes-AMG G 63" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--acc">New</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="4" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g170" aria-hidden="true">63</span>
+        <p class="lmr__meta">2024 · SUV · Los Angeles</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Mercedes-AMG G 63</a></h3>
+        <p class="lmr__line">Handcrafted V8 biturbo, three locking differentials, Manufaktur interior.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">4.3 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">577 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">800 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$2,690<span class="lmr__per"> / mo</span></span><span class="lmr__full">$236,000 · Fair price</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="4" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Mercedes-AMG G 63">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="33.6846" data-lng="-117.8265" data-mo="$1,840" data-car="5">
+      <div class="lrw__ph js-ln-gal" data-car="5">
+        <img class="lrw__img" src="assets/img/car-porsche-taycan-turbo-s.webp" alt="2023 Porsche Taycan Turbo S" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ok">Electric</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="5" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">06</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-porsche-taycan-turbo-s.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-porsche-taycan-turbo-s.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-porsche-taycan-turbo-s.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>2023 · Sedan · Irvine</span><span class="lrw__live"><span class="lrw__ld"></span>5 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Porsche Taycan Turbo S</a></h3>
+        <p class="lrw__line">Twin-motor 750 hp with launch control, battery health 98%.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">6,300 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">2.4 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">750 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">Auto</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">1</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Battery 98%</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Rear steer</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Free charging</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal is-ok">Great deal · $7.2k under<span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span></span></span>
+        <p class="lrw__mo">$1,840<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$198,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="3">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="5" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="33.6846" data-lng="-117.8265" data-mo="$1,840" data-car="5">
+      <div class="lmr__ph js-ln-gal" data-car="5">
+        <img class="lmr__img" src="assets/img/car-porsche-taycan-turbo-s.webp" alt="2023 Porsche Taycan Turbo S" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--ok">Electric</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="5" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g170" aria-hidden="true">S</span>
+        <p class="lmr__meta">2023 · Sedan · Irvine</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Porsche Taycan Turbo S</a></h3>
+        <p class="lmr__line">Twin-motor 750 hp with launch control, battery health 98%.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">2.4 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">750 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">6,300 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$1,840<span class="lmr__per"> / mo</span></span><span class="lmr__full">$198,000 · Great deal</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="5" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Porsche Taycan Turbo S">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="34.0259" data-lng="-118.7798" data-mo="$1,720" data-car="6">
+      <div class="lrw__ph js-ln-gal" data-car="6">
+        <img class="lrw__img" src="assets/img/car-aston-martin-db11.webp" alt="2022 Aston Martin DB11" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--mute">Verified</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="6" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">07</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-aston-martin-db11.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-aston-martin-db11.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-aston-martin-db11.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>2022 · Coupé · Malibu</span><span class="lrw__live"><span class="lrw__ld"></span>11 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Aston Martin DB11</a></h3>
+        <p class="lrw__line">5.2 V12, Bang &amp; Olufsen audio, full Aston service history.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">9,800 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">3.7 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">630 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">Auto</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">1</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>V12</li><li class="lrw__ft"><span class="lrw__ck">✓</span>B&amp;O audio</li><li class="lrw__ft"><span class="lrw__ck">✓</span>FSH</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal is-ok">Good deal · $2.9k under<span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span></span>
+        <p class="lrw__mo">$1,720<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$176,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="2">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="6" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="34.0259" data-lng="-118.7798" data-mo="$1,720" data-car="6">
+      <div class="lmr__ph js-ln-gal" data-car="6">
+        <img class="lmr__img" src="assets/img/car-aston-martin-db11.webp" alt="2022 Aston Martin DB11" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--mute">Verified</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="6" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g100" aria-hidden="true">DB11</span>
+        <p class="lmr__meta">2022 · Coupé · Malibu</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Aston Martin DB11</a></h3>
+        <p class="lmr__line">5.2 V12, Bang &amp; Olufsen audio, full Aston service history.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">3.7 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">630 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">9,800 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$1,720<span class="lmr__per"> / mo</span></span><span class="lmr__full">$176,000 · Good deal</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="6" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Aston Martin DB11">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="33.7701" data-lng="-118.1937" data-mo="$1,990" data-car="7">
+      <div class="lrw__ph js-ln-gal" data-car="7">
+        <img class="lrw__img" src="assets/img/car-jaguar-e-type-s1.webp" alt="1967 Jaguar E-Type S1" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--ink">Classic</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="7" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">08</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/car-jaguar-e-type-s1.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/car-jaguar-e-type-s1.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/car-jaguar-e-type-s1.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>1967 · Roadster · Long Beach</span><span class="lrw__live"><span class="lrw__ld"></span>6 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Jaguar E-Type S1</a></h3>
+        <p class="lrw__line">Series 1 4.2 straight-six, covered headlamps, JDHT heritage certificate.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">51,000 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">6.9 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">265 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">Manual</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">4</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Heritage cert.</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Restored 2021</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Hardtop</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal">Fair price · at market<span class="lx-meter" aria-hidden="true"><span class="is-acc"></span><span class="is-acc"></span><span class=""></span><span class=""></span><span class=""></span></span></span>
+        <p class="lrw__mo">$1,990<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$265,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="3">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="7" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="33.7701" data-lng="-118.1937" data-mo="$1,990" data-car="7">
+      <div class="lmr__ph js-ln-gal" data-car="7">
+        <img class="lmr__img" src="assets/img/car-jaguar-e-type-s1.webp" alt="1967 Jaguar E-Type S1" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--ink">Classic</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="7" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g170" aria-hidden="true">S1</span>
+        <p class="lmr__meta">1967 · Roadster · Long Beach</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Jaguar E-Type S1</a></h3>
+        <p class="lmr__line">Series 1 4.2 straight-six, covered headlamps, JDHT heritage certificate.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">6.9 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">265 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">51,000 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$1,990<span class="lmr__per"> / mo</span></span><span class="lmr__full">$265,000 · Fair price</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="7" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Jaguar E-Type S1">→</a></p>
+      </div>
+    </li><li class="lrw js-ln-item" data-lat="33.6189" data-lng="-117.9298" data-mo="$1,890" data-car="8">
+      <div class="lrw__ph js-ln-gal" data-car="8">
+        <img class="lrw__img" src="assets/img/bodytype-sports-lamborghini.webp" alt="2022 Lamborghini Huracán EVO" width="1376" height="864" loading="lazy">
+        <p class="lcd__tags"><span class="lcd__tag lcd__tag--mute">Verified</span><span class="lcd__tag lcd__tag--ver"><span class="lcd__vd"></span>Verified · 150 pts</span></p>
+        <p class="lcd__acts"><button class="lcd__fav lrw__fav lx-fav js-ln-fav" type="button" data-car="8" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button></p>
+        <span class="lrw__n js-ln-n" aria-hidden="true">09</span>
+        <span class="lrw__thumbs"><button class="lrw__th js-ln-th" type="button" data-step="1" aria-label="Photo 2"><img src="assets/img/bodytype-sports-lamborghini.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">2</span></button><button class="lrw__th js-ln-th" type="button" data-step="2" aria-label="Photo 3"><img src="assets/img/bodytype-sports-lamborghini.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">3</span></button><button class="lrw__th js-ln-th" type="button" data-step="3" aria-label="Photo 4"><img src="assets/img/bodytype-sports-lamborghini.webp" alt="" width="1376" height="864" loading="lazy"><span class="lrw__thn js-ln-thn">4</span></button></span>
+        <span class="lrw__navs"><button class="lcd__nav js-ln-prev" type="button" aria-label="Previous photo">←</button><button class="lcd__nav js-ln-next" type="button" aria-label="Next photo">→</button></span>
+        <span class="lcd__cnt lrw__cnt js-ln-cnt" aria-live="polite">1 / 48</span>
+        <span class="lx-dots js-ln-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div class="lrw__mid">
+        <p class="lrw__meta"><span>2022 · Coupé · Newport Beach</span><span class="lrw__live"><span class="lrw__ld"></span>8 viewing now</span></p>
+        <h3 class="lrw__name"><a href="listing-single-v1.html">Lamborghini Huracán EVO</a></h3>
+        <p class="lrw__line">Naturally aspirated 5.2 V10, rear steer, Grigio Telesto matt paint.</p>
+        <p class="lrw__specs"><span class="lrw__sp"><span class="lrw__sk">Mileage</span><span class="lrw__sv">5,400 mi</span></span><span class="lrw__sp"><span class="lrw__sk">0–100</span><span class="lrw__sv">2.9 s</span></span><span class="lrw__sp"><span class="lrw__sk">Power</span><span class="lrw__sv">631 hp</span></span><span class="lrw__sp"><span class="lrw__sk">Gearbox</span><span class="lrw__sv">DCT</span></span><span class="lrw__sp"><span class="lrw__sk">Owners</span><span class="lrw__sv">1</span></span></p>
+        <ul class="lrw__fts"><li class="lrw__ft"><span class="lrw__ck">✓</span>Lift system</li><li class="lrw__ft"><span class="lrw__ck">✓</span>Carbon pack</li><li class="lrw__ft"><span class="lrw__ck">✓</span>FSH</li></ul>
+      </div>
+      <div class="lrw__side">
+        <span class="lx-deal lrw__deal is-ok">Good deal · $4.4k under<span class="lx-meter" aria-hidden="true"><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class="is-ok"></span><span class=""></span></span></span>
+        <p class="lrw__mo">$1,890<span class="lrw__per"> / mo</span></p>
+        <p class="lrw__price">$219,000 · 10% down · 60 mo</p>
+        <p class="lrw__del"><span class="lrw__dl">Delivery</span><span class="lrw__eta"><span class="js-ln-eta" data-days="2">Arrives in 2 days</span> · free</span></p>
+        <p class="lrw__ctas"><a class="lrw__view" href="listing-single-v1.html">View car<span class="lrw__vdot">→</span></a>
+          <span class="lrw__two"><button class="lrw__cmp js-ln-cmp" type="button" data-car="8" aria-pressed="false">+ Compare</button><a class="lrw__td" href="contact.html">Test drive</a></span></p>
+      </div>
+    </li><li class="lmr js-ln-item" data-lat="33.6189" data-lng="-117.9298" data-mo="$1,890" data-car="8">
+      <div class="lmr__ph js-ln-gal" data-car="8">
+        <img class="lmr__img" src="assets/img/bodytype-sports-lamborghini.webp" alt="2022 Lamborghini Huracán EVO" width="1376" height="864" loading="lazy">
+        <span class="lmr__tag lmr__tag--mute">Verified</span>
+        <button class="lcd__fav lmr__fav lx-fav js-ln-fav" type="button" data-car="8" aria-pressed="false" aria-label="Save to favourites"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        <span class="sr-only">Photo <span class="js-ln-cnt">1 / 48</span></span>
+      </div>
+      <div class="lmr__mid">
+        <span class="lmr__ghost lmr__g133" aria-hidden="true">EVO</span>
+        <p class="lmr__meta">2022 · Coupé · Newport Beach</p>
+        <h3 class="lmr__name"><a href="listing-single-v1.html">Lamborghini Huracán EVO</a></h3>
+        <p class="lmr__line">Naturally aspirated 5.2 V10, rear steer, Grigio Telesto matt paint.</p>
+        <p class="lmr__specs"><span class="lmr__sp"><span class="lmr__sk">0–100</span><span class="lmr__sv">2.9 s</span></span><span class="lmr__sp"><span class="lmr__sk">Power</span><span class="lmr__sv">631 hp</span></span><span class="lmr__sp"><span class="lmr__sk">Mileage</span><span class="lmr__sv">5,400 mi</span></span></p>
+      </div>
+      <div class="lmr__side">
+        <p class="lmr__pr"><span class="lmr__mo">$1,890<span class="lmr__per"> / mo</span></span><span class="lmr__full">$219,000 · Good deal</span></p>
+        <p class="lmr__ctas"><button class="lmr__cmp js-ln-cmp" type="button" data-car="8" aria-pressed="false">+ Compare</button><a class="lmr__go" href="listing-single-v1.html" aria-label="View the Lamborghini Huracán EVO">→</a></p>
+      </div>
+    </li></ul>
+      <div class="lm__more">
+        <button class="lm__btn js-ln-more" type="button"><span class="js-ln-moretxt">Load more cars</span><span class="lm__bd" aria-hidden="true">↓</span></button>
+        <p class="lm__shown" aria-live="polite">Showing <span class="lm__ink js-ln-shown">9</span> of 98 cars</p>
+        <span class="lm__track" aria-hidden="true"><span class="lm__bar js-ln-bar" data-w="9.2"></span></span>
+      </div>
+    </div>
+  </div>
+  <button class="lm__fab js-lm-fab" type="button" aria-pressed="false"><span class="js-lm-fabtxt">Map</span></button>
+</section>
+</main>
+<dialog class="auth js-auth" aria-labelledby="auth-title">
+  <div class="auth__card">
+    <div class="auth__top">
+      <svg class="logo logo--sym auth__logo" viewBox="0 0 172 51" role="img" aria-label="Avava Car Marketplace"><use href="#avava-logo"/></svg>
+      <button class="auth__x js-auth-close" type="button" aria-label="Close"><svg class="ico i18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true" focusable="false"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+    </div>
+    <div class="auth__head">
+      <h2 class="auth__title" id="auth-title"><span class="js-auth-t1">Welcome</span> <span class="acc js-auth-t2">back.</span></h2>
+      <p class="auth__sub js-auth-sub">Sign in to see saved cars, offers and deliveries.</p>
+    </div>
+    <div class="auth__tabs" role="tablist" aria-label="Account">
+      <button class="auth__tab is-on js-auth-tab" id="auth-tab-in" type="button" role="tab" aria-selected="true" aria-controls="auth-in">Sign in</button>
+      <button class="auth__tab js-auth-tab" id="auth-tab-up" type="button" role="tab" aria-selected="false" aria-controls="auth-up" tabindex="-1">Create account</button>
+    </div>
+    <div class="auth__social"><button class="auth__soc js-auth-social" type="button"><svg class="ico i20" viewBox="0 0 24 24"  aria-hidden="true" focusable="false"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.5-2.7c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.7H2.1v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.7 14c-.2-.7-.4-1.4-.4-2.1s.1-1.4.4-2.1V7H2.1a11 11 0 0 0 0 9.9L5.7 14z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2.1 7l3.6 2.8C6.6 7.3 9.1 5.4 12 5.4z"/></svg>Google</button><button class="auth__soc js-auth-social" type="button"><svg class="ico i-apple" viewBox="0 0 24 24"  aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>Apple</button></div>
+    <p class="auth__or"><span></span>or with email<span></span></p>
+    <div class="auth__panel js-auth-panel" id="auth-in" role="tabpanel" aria-labelledby="auth-tab-in"><form class="auth__form js-auth-form" data-mode="in" action="https://demo.gridgum.com/avavamotors/auto-marketplace/profile.html" method="post" novalidate>
+      <div class="afield js-afield"><p class="afield__lbl"><label for="auth-email"><span class="acc">01</span>Email</label></p><div class="afield__box"><input class="afield__in" id="auth-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="auth-email-msg"><span class="afield__ok" aria-hidden="true"><svg class="ico i10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="2,6.5 5,9 10,3"/></svg></span></div><p class="afield__msg" id="auth-email-msg" aria-live="polite"></p></div>
+      <div class="afield js-afield"><p class="afield__lbl"><label for="auth-pass"><span class="acc">02</span>Password</label><button class="afield__aside js-auth-forgot" type="button">Forgot?</button></p><div class="afield__box"><input class="afield__in" id="auth-pass" name="password" type="password" autocomplete="current-password" placeholder="Your password" required aria-describedby="auth-pass-msg"><button class="afield__show js-auth-show" type="button" aria-controls="auth-pass" aria-pressed="false">Show</button></div><p class="afield__msg" id="auth-pass-msg" aria-live="polite"></p></div>
+      <label class="keep"><input class="keep__in" type="checkbox" name="remember" checked><span class="keep__box"><svg class="ico i11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="2,6.5 5,9 10,3"/></svg></span>Keep me signed in</label>
+      <button class="auth__go" type="submit"><span class="js-auth-label">Sign in</span><span class="auth__dot"><svg class="ico i18 auth__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14,6 20,12 14,18"/></svg><span class="auth__spin"></span></span></button>
+      <p class="auth__foot">New to Avava? <button class="auth__link js-auth-switch" type="button" data-tab="1">Create account</button></p>
+    </form></div>
+    <div class="auth__panel js-auth-panel" id="auth-up" role="tabpanel" aria-labelledby="auth-tab-up" hidden><form class="auth__form js-auth-form" data-mode="up" action="https://demo.gridgum.com/avavamotors/auto-marketplace/profile.html" method="post" novalidate>
+      <div class="auth__names">
+        <div class="afield js-afield"><p class="afield__lbl"><label for="auth-first"><span class="acc">01</span>First name</label></p><div class="afield__box"><input class="afield__in" id="auth-first" name="first_name" type="text" autocomplete="given-name" placeholder="Daniel" required aria-describedby="auth-first-msg"> </div><p class="afield__msg" id="auth-first-msg" aria-live="polite"></p></div>
+        <div class="afield js-afield"><p class="afield__lbl"><label for="auth-last"><span class="acc">02</span>Last name</label></p><div class="afield__box"><input class="afield__in" id="auth-last" name="last_name" type="text" autocomplete="family-name" placeholder="Reyes" required aria-describedby="auth-last-msg"> </div><p class="afield__msg" id="auth-last-msg" aria-live="polite"></p></div>
+      </div>
+      <div class="afield js-afield"><p class="afield__lbl"><label for="auth-new-email"><span class="acc">03</span>Email</label></p><div class="afield__box"><input class="afield__in" id="auth-new-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="auth-new-email-msg"><span class="afield__ok" aria-hidden="true"><svg class="ico i10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="2,6.5 5,9 10,3"/></svg></span></div><p class="afield__msg" id="auth-new-email-msg" aria-live="polite"></p></div>
+      <div class="afield js-afield"><p class="afield__lbl"><label for="auth-new-pass"><span class="acc">04</span>Password</label><span class="afield__aside afield__aside--mute js-auth-strength">Strength</span></p><div class="afield__box"><input class="afield__in" id="auth-new-pass" name="password" type="password" autocomplete="new-password" placeholder="8+ characters" required aria-describedby="auth-new-pass-msg"><button class="afield__show js-auth-show" type="button" aria-controls="auth-new-pass" aria-pressed="false">Show</button></div><p class="afield__msg" id="auth-new-pass-msg" aria-live="polite"></p></div>
+      <span class="meter js-auth-meter" aria-hidden="true"><span class="meter__s"></span><span class="meter__s"></span><span class="meter__s"></span><span class="meter__s"></span></span>
+      <button class="auth__go" type="submit"><span class="js-auth-label">Sign up</span><span class="auth__dot"><svg class="ico i18 auth__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14,6 20,12 14,18"/></svg><span class="auth__spin"></span></span></button>
+      <p class="auth__terms">By continuing you agree to the <a href="terms.html">Terms</a> and <a href="terms.html">Privacy policy</a>.</p>
+      <p class="auth__foot">Already have an account? <button class="auth__link js-auth-switch" type="button" data-tab="0">Sign in</button></p>
+    </form></div>
+  </div>
+</dialog>
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script src="assets/js/main75ec.js?v=1791308395"></script>
+</body>
+
+
+</html>
